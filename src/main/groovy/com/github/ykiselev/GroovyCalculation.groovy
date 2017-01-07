@@ -13,7 +13,6 @@ import groovy.transform.TypeChecked
 @CompileStatic
 class GroovyCalculation {
 
-    @CompileStatic
     Component calculate(List<Position> positions) {
         def groups = positions.findAll {
             Position p -> p.type != 'Z'
