@@ -10,7 +10,7 @@ import groovy.transform.TypeChecked
  * @author Yuriy Kiselev (uze@yandex.ru).
  */
 //@TypeChecked
-@CompileStatic
+//@CompileStatic
 class GroovyCalculation {
 
     Component calculate(List<Position> positions) {

@@ -47,10 +47,10 @@ public final class App {
         final double speed = calcs > 0
                 ? 1000.0 * calcs / (double) ms
                 : 0;
-        System.out.println(name + ": " + calcs + " calculations in " + sw + ", speed (comps/sec)=" + speed + ", hash=" + hash);
+        System.out.println(name + ": " + calcs + " calculations done, speed: " + speed + " (comps/sec),\thash=" + hash);
     }
 
-    Function<List<Position>, Component> jsCalculation() {
+    private Function<List<Position>, Component> jsCalculation() {
         final ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
         Objects.requireNonNull(engine);
         try {
@@ -74,11 +74,11 @@ public final class App {
         final JavaCalculation java = new JavaCalculation();
         final Function<List<Position>, Component> javaCode = java::calculate;
         final Function<List<Position>, Component> groovyCode = groovy::calculate;
-        Function<List<Position>, Component> jsCode = jsCalculation();
+        final Function<List<Position>, Component> nashornCode = jsCalculation();
         System.out.println("Starting test...");
         final List<Position> positions = Positions.prepare(COUNT);
         for (int iteration = 1; iteration < 5; iteration++) {
-            doTest(positions, jsCode, "Nashorn");
+            doTest(positions, nashornCode, "Nashorn");
             doTest(positions, javaCode, "Java");
             doTest(positions, groovyCode, "Groovy");
         }
